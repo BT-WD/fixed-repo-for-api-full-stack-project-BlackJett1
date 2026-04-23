@@ -4,8 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>API Full Stack Project</title>
+
+    <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
-    <!-- You code goes here-->
+    <div class="container">
+
+      <h1>Random Dish Generator</h1>
+
+      <button id="new-dish-btn">New Dish</button>
+      <button id="prev-dish-btn">Previous Dish</button>
+
+      <h1 id="dish-name">Name of Dish</h1>
+
+      <div id="image-container">
+        <img id="dish-image" src="" alt="Dish Image" />
+        <p class="placeholder-text">Image</p>
+      </div>
+
+      <div id="ingredients-section">
+        <h2>Ingredients:</h2>
+        <ul id="ingredients-list">
+
+          <li>Ingredient 1</li>
+          <li>Ingredient 2</li>
+          <li>Ingredient 3</li>
+        </ul>
+      </div>
+
+      <div id="instructions-section">
+        <h2>Instructions:</h2>
+        <p id="instructions-text">
+          Step-by-step cooking instructions will appear here.
+        </p>
+      </div>
+
+      <div id="data-container"></div>
+
+    </div>
   </body>
 </html>
