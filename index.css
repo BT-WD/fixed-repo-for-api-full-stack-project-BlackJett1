@@ -46,7 +46,6 @@ button:hover {
   font-weight: bold;
 }
 
-/* Image */
 #image-container {
   width: 100%;
   height: 180px;
@@ -79,7 +78,6 @@ button:hover {
   padding: 4px 0;
 }
 
-/* Instructions */
 #instructions-text {
   background-color: #cfcfcf;
   padding: 15px;
