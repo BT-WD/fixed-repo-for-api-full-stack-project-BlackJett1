@@ -1,9 +1,11 @@
+<script src="index.js" defer></script>
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>API Full Stack Project</title>
+    <title>Random Dish Generator</title>
 
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -16,32 +18,24 @@
       <button id="new-dish-btn">New Dish</button>
       <button id="prev-dish-btn">Previous Dish</button>
 
-      <h1 id="dish-name">Name of Dish</h1>
+      <h2 id="dish-name"></h2>
 
       <div id="image-container">
         <img id="dish-image" src="" alt="Dish Image" />
-        <p class="placeholder-text">Image</p>
       </div>
 
       <div id="ingredients-section">
         <h2>Ingredients:</h2>
-        <ul id="ingredients-list">
-
-          <li>Ingredient 1</li>
-          <li>Ingredient 2</li>
-          <li>Ingredient 3</li>
-        </ul>
+        <ul id="ingredients-list"></ul>
       </div>
 
       <div id="instructions-section">
         <h2>Instructions:</h2>
-        <p id="instructions-text">
-          Step-by-step cooking instructions will appear here.
-        </p>
+        <p id="instructions-text"></p>
       </div>
 
-      <div id="data-container"></div>
-
     </div>
+
+    <script src="index.js"></script>
   </body>
 </html>
