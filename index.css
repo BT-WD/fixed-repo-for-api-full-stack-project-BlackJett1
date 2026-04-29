@@ -83,3 +83,20 @@ button:hover {
   padding: 15px;
   text-align: left;
 }
+
+/* Favorites section */
+#favorites-list {
+  background-color: #cfcfcf;
+  padding: 15px;
+  list-style: none;
+  text-align: left;
+}
+
+#favorites-list li {
+  padding: 6px;
+  cursor: pointer;
+}
+
+#favorites-list li:hover {
+  background-color: #b5b5b5;
+}
