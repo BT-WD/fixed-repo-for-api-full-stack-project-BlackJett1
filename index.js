@@ -11,11 +11,18 @@ const favoritesList = document.getElementById("favorites-list");
 let history = [];
 let currentIndex = -1;
 
+function setLoading(isLoading) {
+  if (isLoading) {
+    dishName.innerHTML = '<div class="loader"></div>';
+  }
+}
+
 async function getRandomMeal() {
+  setLoading(true);
+
   try {
     const response = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
-
-    if (!response.ok) throw new Error("Network error");
+    if (!response.ok) throw new Error();
 
     const data = await response.json();
     const meal = data.meals[0];
@@ -25,20 +32,27 @@ async function getRandomMeal() {
     history.push(meal);
     currentIndex++;
 
-    // save last viewed meal
     localStorage.setItem("lastMeal", JSON.stringify(meal));
-
   } catch (error) {
-    console.error(error);
     dishName.textContent = "Error loading dish";
   }
 }
 
 function displayMeal(meal) {
+  const container = document.querySelector(".container");
+
+  container.classList.remove("fade-in");
+  void container.offsetWidth;
+  container.classList.add("fade-in");
+
   dishName.textContent = meal.strMeal;
 
+  dishImage.classList.remove("show");
   dishImage.src = meal.strMealThumb;
-  dishImage.style.display = "block";
+
+  dishImage.onload = () => {
+    dishImage.classList.add("show");
+  };
 
   ingredientsList.innerHTML = "";
 
@@ -49,6 +63,12 @@ function displayMeal(meal) {
     if (ingredient && ingredient.trim() !== "") {
       const li = document.createElement("li");
       li.textContent = `${measure} ${ingredient}`;
+
+      li.style.opacity = "0";
+      setTimeout(() => {
+        li.style.opacity = "1";
+      }, i * 40);
+
       ingredientsList.appendChild(li);
     }
   }
@@ -69,7 +89,6 @@ saveDishBtn.addEventListener("click", () => {
     const favorites = getFavorites();
     const currentMeal = history[currentIndex];
 
-    // prevent duplicates
     if (!favorites.find(meal => meal.idMeal === currentMeal.idMeal)) {
       favorites.push(currentMeal);
       saveFavorites(favorites);
@@ -82,7 +101,7 @@ function renderFavorites() {
   const favorites = getFavorites();
   favoritesList.innerHTML = "";
 
-  favorites.forEach((meal, index) => {
+  favorites.forEach((meal) => {
     const li = document.createElement("li");
     li.textContent = meal.strMeal;
 
@@ -105,6 +124,7 @@ prevDishBtn.addEventListener("click", () => {
 
 function loadLastMeal() {
   const lastMeal = JSON.parse(localStorage.getItem("lastMeal"));
+
   if (lastMeal) {
     displayMeal(lastMeal);
     history.push(lastMeal);
